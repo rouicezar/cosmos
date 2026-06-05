@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Sparkle } from "@phosphor-icons/react";
 import { getTopic } from "../data/topics.js";
+import { getExplainer } from "../explainers/index.js";
+import { ExplainerPlayer } from "../components/ExplainerPlayer.jsx";
 
 const CATEGORY_LABEL = {
   scale: "宇宙尺度",
@@ -22,15 +24,26 @@ export function TopicDetail() {
   }
 
   const related = (topic.related ?? []).map(getTopic).filter(Boolean);
+  const explainer = getExplainer(topic.id);
 
   return (
     <article className="detail-shell">
       <Link className="back-link" to="/"><ArrowLeft weight="bold" />返回星图</Link>
 
-      <header className="detail-hero">
-        <figure className="detail-figure">
-          <img src={topic.image} alt={topic.name} />
-        </figure>
+      <header className={`detail-hero ${explainer ? "has-video" : ""}`}>
+        {explainer ? (
+          <div className="detail-video">
+            <ExplainerPlayer
+              explainer={explainer}
+              poster={topic.image}
+              label={`${topic.name}${topic.minutes ? ` · ${topic.minutes}` : ""}`}
+            />
+          </div>
+        ) : (
+          <figure className="detail-figure">
+            <img src={topic.image} alt={topic.name} />
+          </figure>
+        )}
         <div className="detail-head-copy">
           <span className="detail-category">
             {CATEGORY_LABEL[topic.category]}

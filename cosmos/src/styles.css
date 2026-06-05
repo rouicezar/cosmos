@@ -1182,3 +1182,195 @@ button {
     position: static;
   }
 }
+
+/* ===== 站内动画讲解播放器 ===== */
+.explainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background: #03040c;
+}
+
+.explainer-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.explainer-poster {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.explainer-poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(3, 5, 15, 0.32), rgba(3, 5, 15, 0.58));
+}
+
+.explainer-play {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 26px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 26px rgba(123, 213, 255, 0.4);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.explainer-poster:hover .explainer-play {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.explainer-label {
+  position: absolute;
+  z-index: 1;
+  left: 18px;
+  bottom: 16px;
+  color: #fff;
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 14px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.explainer-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 56px;
+  margin: 0;
+  padding: 0 24px;
+  text-align: center;
+  color: #fff;
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.5;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+}
+
+.explainer-controls {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.explainer-controls button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 15px;
+  backdrop-filter: blur(6px);
+}
+
+.explainer-bar {
+  flex: 1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.explainer-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+}
+
+.detail-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(190, 222, 255, 0.2),
+    0 0 50px rgba(124, 213, 255, 0.18);
+}
+
+.detail-hero.has-video {
+  grid-template-columns: 1fr;
+  gap: clamp(22px, 3vw, 36px);
+}
+
+/* ===== 模态 ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(2, 4, 10, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.modal-panel {
+  width: min(900px, 94vw);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(7, 12, 24, 0.96);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-head strong {
+  font-size: 18px;
+}
+
+.modal-head button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modal-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}

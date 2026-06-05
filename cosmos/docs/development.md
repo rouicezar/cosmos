@@ -16,7 +16,8 @@
 - `src/data/topics.js`：**统一内容模型（单一真相来源）**，首页星图、详情页、冷知识流全部从这里派生。
 - `src/data/missions.js`：底部探索任务轨数据。
 - `src/pages/`：`Home.jsx`（交互星图）、`TopicDetail.jsx`（专题详情）、`ColdFeed.jsx`（冷知识流）。
-- `src/components/`：`SiteHeader`、`Hero`、`InsightPanel`、`ScaleAtlas`（参数化椭圆轨道）、`LessonStack`、`MissionDock`、`Starfield`。
+- `src/components/`：`SiteHeader`、`Hero`、`InsightPanel`、`ScaleAtlas`（参数化椭圆轨道）、`LessonStack`、`MissionDock`、`Starfield`、`ExplainerPlayer`（动画讲解播放器）、`Modal`。
+- `src/explainers/`：三段课程的「视频」内容——站内 Canvas 交互动画（`blackHole`/`starBirth`/`lightYear`）。每个模块导出 `duration`、`captions`、`draw(ctx, t, w, h)`，`draw` 为纯函数式（给定进度即可绘制），便于播放/暂停/重播；`index.js` 按 topic id 映射。
 - `src/styles.css`：完整视觉系统和响应式。
 - `src/assets/cosmic-story-atlas-reference.png`：Product Design 方案 2 视觉参考图。
 - `docs/`：需求、设计、开发文档。
