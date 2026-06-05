@@ -3,7 +3,7 @@ import { ArrowClockwise, Pause, Play } from "@phosphor-icons/react";
 
 // 站内交互动画播放器：把一个纯函数式 draw(ctx,t,w,h) 动画包装成可播放/暂停/重播的“视频”。
 // 用于课程详情页主视觉位与首页课程卡的弹出模态。
-export function ExplainerPlayer({ explainer, poster, label }) {
+export function ExplainerPlayer({ explainer, poster, label, autoPlay = false }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
   const barRef = useRef(null);
@@ -13,13 +13,33 @@ export function ExplainerPlayer({ explainer, poster, label }) {
   const playingRef = useRef(false);
   const dimsRef = useRef({ w: 0, h: 0 });
 
-  const [started, setStarted] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [caption, setCaption] = useState(explainer.captions[0]?.text ?? "");
-
   const reduce =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const [started, setStarted] = useState(autoPlay);
+  const [playing, setPlaying] = useState(false);
+  const [caption, setCaption] = useState(explainer.captions[0]?.text ?? "");
+
+  // 详情页主视觉自动播放：进入即"活"起来（降低动效时只绘制静态帧）。
+  useEffect(() => {
+    if (!autoPlay) return;
+    const id = requestAnimationFrame(() => {
+      if (reduce) {
+        const ctx = canvasRef.current.getContext("2d");
+        const { w, h } = dimsRef.current;
+        explainer.draw(ctx, 0.85, w, h);
+        const last = explainer.captions[explainer.captions.length - 1];
+        setCaption(last?.text ?? "");
+      } else {
+        lastRef.current = performance.now();
+        playingRef.current = true;
+        setPlaying(true);
+      }
+    });
+    return () => cancelAnimationFrame(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // 画布尺寸自适应容器（含 DPR），并重绘当前帧。
   useEffect(() => {

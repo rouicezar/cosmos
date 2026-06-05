@@ -1576,3 +1576,36 @@ button {
     font-size: 14px;
   }
 }
+
+/* ===== 随滚动揭示 ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* 关联卡：带 tagline 悬念的"下一个"钩子 */
+.related-text {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.related-text small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}

@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowRight, Sparkle } from "@phosphor-icons/react";
 import { getTopic } from "../data/topics.js";
 import { getExplainer } from "../explainers/index.js";
 import { ExplainerPlayer } from "../components/ExplainerPlayer.jsx";
+import { Reveal } from "../components/Reveal.jsx";
+import { CountUp } from "../components/CountUp.jsx";
 
 const CATEGORY_LABEL = {
   scale: "宇宙尺度",
@@ -37,6 +39,7 @@ export function TopicDetail() {
               explainer={explainer}
               poster={topic.image}
               label={`${topic.name}${topic.minutes ? ` · ${topic.minutes}` : ""}`}
+              autoPlay
             />
           </div>
         ) : (
@@ -55,7 +58,7 @@ export function TopicDetail() {
             {topic.quickStats.map((stat) => (
               <div key={stat.label}>
                 <dt>{stat.label}</dt>
-                <dd>{stat.value}</dd>
+                <dd><CountUp value={stat.value} /></dd>
               </div>
             ))}
           </dl>
@@ -64,44 +67,47 @@ export function TopicDetail() {
 
       <div className="detail-body">
         <div className="detail-sections">
-          {topic.sections.map((section) => (
-            <section key={section.heading} className="detail-section">
+          {topic.sections.map((section, i) => (
+            <Reveal as="section" key={section.heading} className="detail-section" delay={i * 60}>
               <h2>{section.heading}</h2>
               <p>{section.body}</p>
-            </section>
+            </Reveal>
           ))}
 
-          <section className="detail-section detail-facts">
+          <Reveal as="section" className="detail-section detail-facts">
             <h2>关键事实</h2>
             <ul>
               {topic.facts.map((fact) => (
                 <li key={fact}>{fact}</li>
               ))}
             </ul>
-          </section>
+          </Reveal>
         </div>
 
-        <aside className="detail-cold-rail">
+        <Reveal as="aside" className="detail-cold-rail">
           <h2><Sparkle weight="fill" />冷知识</h2>
           {topic.cold.map((text) => (
             <p key={text} className="cold-card">{text}</p>
           ))}
-        </aside>
+        </Reveal>
       </div>
 
       {related.length > 0 && (
-        <footer className="detail-related">
-          <span>继续探索</span>
+        <Reveal as="footer" className="detail-related">
+          <span>顺着好奇心，继续探索</span>
           <div className="related-grid">
             {related.map((item) => (
               <Link key={item.id} className="related-card" to={`/topic/${item.id}`}>
                 <img src={item.image} alt="" loading="lazy" />
-                <strong>{item.name}</strong>
+                <span className="related-text">
+                  <strong>{item.name}</strong>
+                  <small>{item.tagline}</small>
+                </span>
                 <ArrowRight weight="bold" />
               </Link>
             ))}
           </div>
-        </footer>
+        </Reveal>
       )}
     </article>
   );
