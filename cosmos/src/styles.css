@@ -452,15 +452,15 @@ button {
 
 .mission-icon {
   color: var(--gold);
-  font-size: 28px;
+  font-size: 18px;
 }
 
 .mission-dock {
   position: relative;
   z-index: 4;
   display: grid;
-  grid-template-columns: clamp(170px, 11vw, 220px) 1fr;
-  gap: 18px;
+  grid-template-columns: clamp(200px, 16vw, 280px) 1fr;
+  gap: 22px;
   align-items: stretch;
   padding: clamp(14px, 1.2vw, 22px);
   border: 1px solid var(--line);
@@ -472,12 +472,49 @@ button {
 .mission-summary {
   display: grid;
   align-content: center;
-  gap: 10px;
+  gap: 8px;
   color: var(--muted);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding-right: 22px;
+}
+
+.mission-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--gold);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 13px;
 }
 
 .mission-summary strong {
   color: var(--ink);
+  font-size: 20px;
+}
+
+.mission-brief {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.mission-enter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--cyan);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: gap 160ms ease, color 160ms ease;
+}
+
+.mission-enter:hover {
+  gap: 11px;
+  color: #c9efff;
 }
 
 .dock-progress {
@@ -756,6 +793,13 @@ button {
   .site-header,
   .mission-dock {
     grid-template-columns: 1fr;
+  }
+
+  .mission-summary {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-right: 0;
+    padding-bottom: 14px;
   }
 
   .brand {

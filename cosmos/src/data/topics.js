@@ -7,6 +7,8 @@ import lessonBlackHole from "../assets/lesson-black-hole.png";
 import lessonStarBirth from "../assets/lesson-star-birth.png";
 import lessonLightYear from "../assets/lesson-light-year.png";
 import missionNebula from "../assets/mission-nebula.png";
+import missionObservable from "../assets/mission-observable.png";
+import missionFuture from "../assets/mission-future.png";
 
 // 站点统一内容模型（单一真相来源）。
 // 首页星图、详情页、冷知识流全部从这里派生。
@@ -312,6 +314,68 @@ export const topics = [
       "星云的密度极低，所谓“穿越星云”几乎感觉不到任何物质——它远比地球上的实验室真空更空。",
     ],
     related: ["star-birth", "galaxy"],
+  },
+  {
+    id: "dark-matter",
+    name: "暗物质之谜",
+    category: "object",
+    image: missionObservable,
+    tagline: "看不见，却撑起宇宙的引力骨架",
+    quickStats: [
+      { label: "占比", value: "约占宇宙物质的 85%" },
+      { label: "探测", value: "至今未被直接捕获" },
+    ],
+    note: "宇宙中绝大多数物质，我们其实从未见过。",
+    sections: [
+      {
+        heading: "看不见的大多数",
+        body: "暗物质不发光、不反射也不吸收光，因此无法被直接看到。但它的引力效应无处不在：星系的自转、星系团的束缚、光线的弯曲都显示，宇宙里约 85% 的物质是看不见的暗物质，我们熟悉的普通物质只占一小部分。",
+      },
+      {
+        heading: "我们如何确信它存在",
+        body: "1933 年，兹威基发现星系团中可见物质的引力远不足以束缚住高速运动的成员星系。后来对星系自转曲线的测量进一步证实：星系外缘的恒星转得太快，必须有大量看不见的质量在背后维系，否则它们早该被甩出去。",
+      },
+    ],
+    facts: [
+      "暗物质约占宇宙全部物质的 85%。",
+      "它不参与电磁作用，所以既不发光也不吸光。",
+    ],
+    cold: [
+      "银河系被一个比可见恒星盘大得多的暗物质晕包裹着，我们看到的星空只是其中很小的一部分。",
+      "暗物质至今从未被任何探测器直接捕获，是现代物理学最大的未解之谜之一。",
+    ],
+    related: ["galaxy", "observable", "cosmic-future"],
+  },
+  {
+    id: "cosmic-future",
+    name: "宇宙的未来",
+    category: "object",
+    image: missionFuture,
+    tagline: "膨胀会把我们带向何方",
+    quickStats: [
+      { label: "当前趋势", value: "宇宙在加速膨胀" },
+      { label: "幕后推手", value: "暗能量（约占 68%）" },
+    ],
+    note: "宇宙有开始，也许也有它自己的结局。",
+    sections: [
+      {
+        heading: "加速膨胀的宇宙",
+        body: "1998 年，对遥远超新星的观测带来一个意外结论：宇宙不仅在膨胀，而且在加速膨胀。推动这一切的神秘成分被称为暗能量，约占宇宙总能量的 68%——它是今天宇宙演化的主导力量。",
+      },
+      {
+        heading: "可能的结局",
+        body: "如果暗能量持续主导，宇宙可能走向“大冻结”：星系彼此远离、恒星逐一燃尽、温度趋近绝对零度，一切归于沉寂。这是目前观测最支持的图景之一，但宇宙的最终命运仍是开放的问题。",
+      },
+    ],
+    facts: [
+      "宇宙正在加速膨胀，由暗能量驱动。",
+      "暗能量约占宇宙总能量的 68%。",
+    ],
+    cold: [
+      "在极其遥远的未来，膨胀会让其他星系全部退出可观测范围，那时的文明将再也看不到任何河外星系。",
+      "“大冻结”是目前观测最支持的宇宙结局之一：万物冷却、彼此远离，最终趋于寂静。",
+    ],
+    related: ["observable", "dark-matter"],
   },
 ];
 
