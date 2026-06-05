@@ -1,10 +1,26 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./App.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Layout } from "./Layout.jsx";
+import { Home } from "./pages/Home.jsx";
+import { TopicDetail } from "./pages/TopicDetail.jsx";
+import { ColdFeed } from "./pages/ColdFeed.jsx";
 import "./styles.css";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "topic/:id", element: <TopicDetail /> },
+      { path: "cold", element: <ColdFeed /> },
+    ],
+  },
+]);
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 );
