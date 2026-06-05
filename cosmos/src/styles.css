@@ -1609,3 +1609,248 @@ button {
   font-size: 13px;
   line-height: 1.4;
 }
+
+/* ===== 尺度俯冲旅程 ===== */
+.journey-page {
+  position: relative;
+  z-index: 1;
+}
+
+.journey-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.journey-topbar .back-link {
+  margin-bottom: 0;
+}
+
+.journey-title {
+  color: var(--muted);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 14px;
+}
+
+.journey-scroller {
+  height: calc(100svh - 188px);
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.journey-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.journey-slide {
+  display: grid;
+  grid-template-columns: minmax(0, 48%) 1fr;
+  align-items: center;
+  gap: clamp(28px, 5vw, 80px);
+  height: 100%;
+  padding: 0 clamp(20px, 5vw, 80px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.journey-orb {
+  position: relative;
+  justify-self: center;
+  width: var(--orb);
+  height: var(--orb);
+  max-width: 46vw;
+  max-height: 46vw;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle, rgba(124, 213, 255, 0.12), transparent 70%);
+  box-shadow:
+    0 0 0 1px rgba(190, 222, 255, 0.3),
+    0 0 90px rgba(124, 213, 255, 0.32);
+  opacity: 0.35;
+  transform: scale(0.82);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.journey-slide.is-active .journey-orb {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.journey-orb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.18);
+}
+
+.journey-orb.earth img {
+  transform: scale(1.12);
+}
+
+.journey-orb.solar img {
+  transform: scale(1.04);
+}
+
+.journey-copy {
+  max-width: 520px;
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
+}
+
+.journey-slide.is-active .journey-copy {
+  opacity: 1;
+  transform: none;
+}
+
+.journey-index {
+  color: var(--gold);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.journey-index i {
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.journey-copy h2 {
+  margin: 10px 0 6px;
+  font-size: clamp(46px, 6vw, 92px);
+  line-height: 1;
+}
+
+.journey-label {
+  margin: 0 0 22px;
+  color: var(--cyan);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: clamp(18px, 1.6vw, 24px);
+}
+
+.journey-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 30px;
+  margin: 0 0 20px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.journey-stats div {
+  display: grid;
+  gap: 4px;
+}
+
+.journey-stats dt {
+  color: var(--muted);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.journey-stats dd {
+  margin: 0;
+  font-size: 17px;
+}
+
+.journey-note {
+  margin: 0 0 24px;
+  color: rgba(248, 240, 223, 0.86);
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.7;
+}
+
+.journey-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: rgba(248, 240, 223, 0.6);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 13px;
+  transform: translateX(-50%);
+  animation: reel-float 1.9s ease-in-out infinite;
+}
+
+.journey-ruler {
+  position: absolute;
+  right: clamp(8px, 1.6vw, 26px);
+  top: 56%;
+  z-index: 5;
+  display: grid;
+  gap: 16px;
+  transform: translateY(-50%);
+}
+
+.journey-ruler button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-family: "Avenir Next", "PingFang SC", sans-serif;
+  font-size: 13px;
+}
+
+.journey-ruler button i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  transition: background 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.journey-ruler button span {
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.journey-ruler button:hover span,
+.journey-ruler button.is-active span {
+  opacity: 1;
+  transform: none;
+}
+
+.journey-ruler button.is-active {
+  color: var(--gold);
+}
+
+.journey-ruler button.is-active i {
+  background: var(--gold);
+  box-shadow: 0 0 12px var(--gold);
+  transform: scale(1.25);
+}
+
+@media (max-width: 900px) {
+  .journey-slide {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 0 24px;
+  }
+
+  .journey-orb {
+    max-width: 62vw;
+    max-height: 62vw;
+  }
+
+  .journey-stats {
+    justify-content: center;
+  }
+
+  .journey-ruler {
+    display: none;
+  }
+}

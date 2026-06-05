@@ -5,6 +5,7 @@ import { Layout } from "./Layout.jsx";
 import { Home } from "./pages/Home.jsx";
 import { TopicDetail } from "./pages/TopicDetail.jsx";
 import { ColdFeed } from "./pages/ColdFeed.jsx";
+import { ScaleJourney } from "./pages/ScaleJourney.jsx";
 import "./styles.css";
 
 const router = createBrowserRouter([
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
+      { path: "scale", element: <ScaleJourney /> },
       { path: "topic/:id", element: <TopicDetail /> },
       { path: "cold", element: <ColdFeed /> },
     ],

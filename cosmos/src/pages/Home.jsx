@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { topicsByCategory } from "../data/topics.js";
 import { missions, MISSION_STATUS } from "../data/missions.js";
 import { Hero } from "../components/Hero.jsx";
@@ -14,6 +15,7 @@ const DEFAULT_MISSION = missions.findIndex((m) => m.status === MISSION_STATUS.AC
 
 // 首页：交互式星图（尺度轴 + 课程卡 + 任务轨）。
 export function Home() {
+  const navigate = useNavigate();
   const [activeNode, setActiveNode] = useState(DEFAULT_NODE);
   const [activeMission, setActiveMission] = useState(DEFAULT_MISSION);
 
@@ -28,7 +30,7 @@ export function Home() {
         <Hero
           currentNode={currentNode}
           currentMissionName={missions[activeMission].name}
-          onStart={() => setActiveMission(DEFAULT_MISSION)}
+          onStart={() => navigate("/scale")}
         />
         <ScaleAtlas nodes={scaleNodes} activeNode={activeNode} onSelect={setActiveNode} />
         <LessonStack lessons={lessons} />
