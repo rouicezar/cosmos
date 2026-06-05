@@ -163,6 +163,14 @@ export function App() {
             <button type="button" onClick={() => setActiveMission(2)}>开始探索宇宙</button>
             <span>当前任务：{missions[activeMission][0]}</span>
           </div>
+          <aside className="insight-panel">
+            <span>当前观测</span>
+            <strong>{currentNode.name}</strong>
+            <p>{currentNode.distance}</p>
+            <p>{currentNode.time}</p>
+            <em>{currentNode.note}</em>
+            <small>正在学习：{currentLesson.title}</small>
+          </aside>
         </div>
 
         <section className="scale-atlas" aria-label="宇宙尺度">
@@ -249,14 +257,6 @@ export function App() {
         </div>
       </section>
 
-      <aside className="insight-panel">
-        <span>当前观测</span>
-        <strong>{currentNode.name}</strong>
-        <p>{currentNode.distance}</p>
-        <p>{currentNode.time}</p>
-        <em>{currentNode.note}</em>
-        <small>正在学习：{currentLesson.title}</small>
-      </aside>
     </main>
   );
 }
