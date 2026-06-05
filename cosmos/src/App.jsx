@@ -1,12 +1,37 @@
 import { useMemo, useState } from "react";
-import { MagnifyingGlass, Play, RocketLaunch, Spiral, UserCircle } from "@phosphor-icons/react";
+import {
+  CheckCircle,
+  LockKey,
+  MagnifyingGlass,
+  Play,
+  RocketLaunch,
+  Spiral,
+  UserCircle,
+} from "@phosphor-icons/react";
 import cosmicBackground from "./assets/cosmic-background.png";
+import planetEarth from "./assets/planet-earth.png";
+import planetMoon from "./assets/planet-moon.png";
+import planetSolar from "./assets/planet-solar.png";
+import planetGalaxy from "./assets/planet-galaxy.png";
+import planetObservable from "./assets/planet-observable.png";
+import lessonBlackHole from "./assets/lesson-black-hole.png";
+import lessonStarBirth from "./assets/lesson-star-birth.png";
+import lessonLightYear from "./assets/lesson-light-year.png";
+import missionEarth from "./assets/mission-earth.png";
+import missionMoon from "./assets/mission-moon.png";
+import missionSolar from "./assets/mission-solar.png";
+import missionGalaxy from "./assets/mission-galaxy.png";
+import missionObservable from "./assets/mission-observable.png";
+import missionNebula from "./assets/mission-nebula.png";
+import missionBlackHole from "./assets/mission-black-hole.png";
+import missionFuture from "./assets/mission-future.png";
 
 const scaleNodes = [
   {
     id: "earth",
     name: "地球",
     label: "直径 12,742 km",
+    image: planetEarth,
     distance: "1 个地球直径",
     time: "光绕地球约 0.13 秒",
     note: "所有宇宙尺度的理解，都从脚下这颗行星开始。",
@@ -15,6 +40,7 @@ const scaleNodes = [
     id: "moon",
     name: "月球",
     label: "距离地球 384,400 km",
+    image: planetMoon,
     distance: "约 30 个地球直径",
     time: "光到月球约 1.28 秒",
     note: "月球看起来很近，但已经远到可以容纳 30 个地球。",
@@ -23,6 +49,7 @@ const scaleNodes = [
     id: "solar",
     name: "太阳系",
     label: "直径约 2 光年",
+    image: planetSolar,
     distance: "行星在太阳引力下排成轨道",
     time: "阳光到地球约 8 分钟",
     note: "太阳系不是平面图，而是一个巨大的引力剧场。",
@@ -31,6 +58,7 @@ const scaleNodes = [
     id: "galaxy",
     name: "银河系",
     label: "直径约 10 万光年",
+    image: planetGalaxy,
     distance: "约有千亿颗恒星",
     time: "横穿银河需要十万年光程",
     note: "我们看到的星空，只是银河系里很小的一片邻域。",
@@ -39,6 +67,7 @@ const scaleNodes = [
     id: "observable",
     name: "可观测宇宙",
     label: "直径约 930 亿光年",
+    image: planetObservable,
     distance: "包含数以万亿计星系",
     time: "最古老光线来自宇宙早期",
     note: "可观测宇宙的边界，是光到达我们的极限。",
@@ -52,6 +81,7 @@ const lessons = [
     minutes: "9 分钟",
     body: "事件视界、光线逃逸与引力透镜，揭开“看不见”的真相。",
     accent: "black-hole",
+    image: lessonBlackHole,
   },
   {
     id: "star-birth",
@@ -59,6 +89,7 @@ const lessons = [
     minutes: "12 分钟",
     body: "从星云坍缩到核聚变点燃，见证一颗恒星的诞生之旅。",
     accent: "nebula",
+    image: lessonStarBirth,
   },
   {
     id: "light-year",
@@ -66,18 +97,19 @@ const lessons = [
     minutes: "8 分钟",
     body: "用日常生活的尺度，理解宇宙惊人的距离。",
     accent: "milky",
+    image: lessonLightYear,
   },
 ];
 
 const missions = [
-  ["地球家园", "已完成"],
-  ["月球之谜", "已完成"],
-  ["太阳系漫游", "进行中"],
-  ["银河系探秘", "未解锁"],
-  ["宇宙大尺度", "未解锁"],
-  ["暗物质之谜", "未解锁"],
-  ["黑洞边界", "未解锁"],
-  ["宇宙的未来", "未解锁"],
+  ["地球家园", "已完成", missionEarth],
+  ["月球之谜", "已完成", missionMoon],
+  ["太阳系漫游", "进行中", missionSolar],
+  ["银河系探秘", "未解锁", missionGalaxy],
+  ["宇宙大尺度", "未解锁", missionObservable],
+  ["暗物质之谜", "未解锁", missionNebula],
+  ["黑洞边界", "未解锁", missionBlackHole],
+  ["宇宙的未来", "未解锁", missionFuture],
 ];
 
 export function App() {
@@ -135,6 +167,8 @@ export function App() {
 
         <section className="scale-atlas" aria-label="宇宙尺度">
           <div className="orbit-thread" />
+          <div className="orbit-arc arc-a" />
+          <div className="orbit-arc arc-b" />
           {scaleNodes.map((node, index) => (
             <button
               key={node.id}
@@ -144,7 +178,9 @@ export function App() {
               onClick={() => setActiveNode(node.id)}
               aria-pressed={activeNode === node.id}
             >
-              <span className="planet-thumb" />
+              <span className="planet-thumb">
+                <img src={node.image} alt="" />
+              </span>
               <span className="node-copy">
                 <strong>{node.name}</strong>
                 <small>{node.label}</small>
@@ -162,7 +198,9 @@ export function App() {
               onClick={() => setActiveLesson(lesson.id)}
               aria-pressed={activeLesson === lesson.id}
             >
-              <span className="lesson-art" />
+              <span className="lesson-art">
+                <img src={lesson.image} alt="" />
+              </span>
               <span className="lesson-text">
                 <strong>{lesson.title}</strong>
                 <small>{lesson.minutes}</small>
@@ -184,16 +222,28 @@ export function App() {
           </div>
         </div>
         <div className="mission-list">
-          {missions.map(([name, status], index) => (
+          {missions.map(([name, status, image], index) => (
             <button
               key={name}
               className={`mission-card ${activeMission === index ? "is-active" : ""}`}
               type="button"
               onClick={() => setActiveMission(index)}
             >
-              <span>{index + 1}</span>
+              <span className="mission-number">{index + 1}</span>
+              <img src={image} alt="" />
               <strong>{name}</strong>
-              <small>{status}</small>
+              <small className={`mission-status ${status === "已完成" ? "done" : status === "进行中" ? "active" : "locked"}`}>
+                {status}
+                {status === "已完成" && <CheckCircle weight="fill" />}
+                {status === "未解锁" && <LockKey weight="duotone" />}
+              </small>
+              {status === "进行中" && (
+                <span className="mission-dots" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+              )}
             </button>
           ))}
         </div>
