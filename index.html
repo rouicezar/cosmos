@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>数学实验室</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">1-5 年级 · 可视化数学</p>
+          <h1>数学实验室</h1>
+        </div>
+        <label class="search-box">
+          <span>搜索</span>
+          <input id="searchInput" type="search" placeholder="分数、钟表、面积...">
+        </label>
+      </header>
+
+      <section class="workspace">
+        <aside class="grade-panel" aria-label="年级选择">
+          <div class="panel-title">
+            <span>年级</span>
+            <strong id="gradeCount">0 个实验</strong>
+          </div>
+          <div id="gradeButtons" class="grade-buttons"></div>
+          <div class="progress-card">
+            <span>本级进度</span>
+            <div class="progress-track">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <strong id="progressText">1 / 1</strong>
+          </div>
+        </aside>
+
+        <section class="lab-stage" aria-live="polite">
+          <div class="stage-header">
+            <div>
+              <p id="topicUnit" class="eyebrow">单元</p>
+              <h2 id="topicTitle">知识点</h2>
+            </div>
+            <span id="topicDomain" class="domain-pill">数与代数</span>
+          </div>
+          <div id="visualStage" class="visual-stage"></div>
+          <div id="topicStrip" class="topic-strip"></div>
+        </section>
+
+        <aside class="guide-panel">
+          <div class="panel-title">
+            <span>实验记录</span>
+            <strong id="visualName">图形演示</strong>
+          </div>
+          <p id="topicSummary" class="summary"></p>
+          <div class="guide-steps">
+            <div>
+              <span>看一看</span>
+              <p id="lookPrompt"></p>
+            </div>
+            <div>
+              <span>拖一拖</span>
+              <p id="playPrompt"></p>
+            </div>
+            <div>
+              <span>想一想</span>
+              <p id="thinkPrompt"></p>
+            </div>
+          </div>
+          <div id="controls" class="controls"></div>
+          <div class="nav-actions">
+            <button id="prevTopic" type="button">上一个</button>
+            <button id="nextTopic" type="button">下一个</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
