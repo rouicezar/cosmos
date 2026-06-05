@@ -365,7 +365,7 @@ button {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(5, 11, 23, 0.88), rgba(5, 11, 23, 0.62) 45%, transparent 75%),
+    linear-gradient(90deg, rgba(5, 11, 23, 0.92), rgba(5, 11, 23, 0.78) 43%, rgba(5, 11, 23, 0.28) 58%, transparent 78%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent);
   pointer-events: none;
 }
@@ -403,12 +403,14 @@ button {
   position: relative;
   display: block;
   min-height: 100%;
+  margin-left: -44px;
 }
 
 .lesson-art img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .play-indicator {
@@ -496,16 +498,6 @@ button {
 .mission-card.is-active {
   border-color: rgba(245, 189, 114, 0.78);
   box-shadow: inset 0 0 0 1px rgba(245, 189, 114, 0.36), 0 0 28px rgba(245, 189, 114, 0.26);
-}
-
-.mission-card::after {
-  content: "";
-  position: absolute;
-  right: -16px;
-  top: 44%;
-  width: 34px;
-  height: 1px;
-  background: rgba(245, 189, 114, 0.45);
 }
 
 .mission-card img {
